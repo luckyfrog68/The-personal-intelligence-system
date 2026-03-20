@@ -9,10 +9,10 @@
 python -m venv env
 
 # Activate Enviroment for windows
-venv\Scripts\activate
+env\Scripts\activate
 
 # Activate Enviroment for mac
-source venv/bin/activate
+source env/bin/activate
 
 
 # Install dependencies
