@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test App</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 50px; background: #f0f0f0; }
+        .container { background: white; padding: 30px; border-radius: 8px; max-width: 500px; margin: 0 auto; }
+        h1 { color: #333; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #0056b3; }
+        #result { margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 4px; display: none; }
+        .status { margin: 15px 0; font-size: 18px; font-weight: bold; }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✓ Frontend is running</h1>
+        <button onclick="callAPI()">Test API</button>
+        
+        <div id="result">
+            <p id="resultText"></p>
+        </div>
+    </div>
+
+    <script>
+        function callAPI() {
+            fetch('/api/test')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('resultText').innerHTML = 
+                        '<p class="status success">✓ API is called</p>' +
+                        '<p><strong>' + data.message + '</strong></p>';
+                    document.getElementById('result').style.display = 'block';
+                })
+                .catch(error => {
+                    document.getElementById('resultText').innerHTML = 
+                        '<p class="status error">✗ API Error: ' + error + '</p>';
+                    document.getElementById('result').style.display = 'block';
+                });
+        }
+    </script>
+</body>
+</html>
